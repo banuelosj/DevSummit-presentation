@@ -124,6 +124,7 @@ require([
       view: view,
       field: "YEAR_",
       sortBy: "value",
+      defaultSymbolEnabled: false
     };
 
     // when the promise resolves, apply the visual variables to the renderer
