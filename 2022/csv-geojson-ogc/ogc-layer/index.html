@@ -18,94 +18,82 @@
         height: 100%;
         width: 100%;
       }
+    
       .esri-legend .esri-legend__layer-caption {
         display: none;
+      }
+    
+      #infoDiv {
+        padding: 10px;
       }
     </style>
 
     <script src="https://js.arcgis.com/4.23/"></script>
+
+    <script type="text/plain" id="drought-renderer">
+      // Write the expression and reference the value
+      // of each field with a meaningful variable name within
+      // the expression. Then calculate the max number with
+      // the Max() function and use Decode() to return a string
+      // value representing the party whose field value matches
+      // the max value.
+
+      var persist = $feature.fid_persis;
+      var improves = $feature.fid_improv;
+      var removal = $feature.fid_remove;
+      var development = $feature.fid_dev;
+      var droughtValues = [persist, improves, removal, development];
+
+      // Decode() and Max() are built-in Arcade functions
+      return Decode( Max(droughtValues),
+        persist, 'Drought Persists',
+        improves, 'Drought Could Improve',
+        removal, 'Drought Could End',
+        development, 'Drought Could Develop',
+        'n/a');
+    </script>
 
     <script>
       require([
         "esri/Map",
         "esri/layers/WFSLayer",
         "esri/views/MapView",
-        "esri/renderers/UniqueValueRenderer",
-        "esri/widgets/Legend"
+        "esri/widgets/Legend",
+        "esri/smartMapping/renderers/type",
+        "esri/layers/support/FeatureEffect"
       ], function(
         Map,
         WFSLayer,
         MapView,
-        UniqueValueRenderer,
-        Legend
+        Legend,
+        typeRendererCreator,
+        FeatureEffect
       ) {
-        // initialize the renderer
-        const uniqueValueRenderer = new UniqueValueRenderer({
-          field: "fid_persis",
-          field2: "fid_remove",
-          field3: "fid_dev",
-          defaultSymbol: { 
-            type: "simple-fill",
-            style: "solid",
-            color: "#DED2BC",
-            outline: {
-              color: [255, 255, 255],
-              width: 1
-            }
-          },
-          fieldDelimiter: ", ",
-          uniqueValueInfos: [
-            {
-              label: "Drought persist",
-              value: "1, 0, 0",
-              symbol: {
-                type: "simple-fill",
-                style: "solid",
-                color: "#9B634A",
-                outline: {
-                  color: [255, 255, 255],
-                  width: 1
-                }
-              }
-            },
-            {
-              label: "Drought removal likely",
-              value: "0, 1, 0",
-              symbol: {
-                type: "simple-fill",
-                style: "solid",
-                color: "#B2AD69",
-                outline: {
-                  color: [255, 255, 255],
-                  width: 1
-                }
-              }
-            },
-            {
-              label: "drought development likely",
-              value: "0, 0, 1",
-              symbol: {
-                type: "simple-fill",
-                style: "solid",
-                color: "#FFDE63",
-                outline: {
-                  color: [255, 255, 255],
-                  width: 1
-                }
-              }
-            }
-          ] 
-        });
+        // Assign the expression to the `valueExpression` property and
+        // set up the unique value infos based on the decode values
+        // you set up in the expression.
+        const droughtArcade = document.getElementById("drought-renderer").text;
+
+        const popupTemplate = {
+          title: "Drought Outlook (Feb - May 2022)",
+          content: "The seasonal drought outlook demonstrates <b>{expression/drought-outlook-category}</b> in this region of the United States.",
+          expressionInfos: [{
+            name: "drought-outlook-category",
+            expression: "When($feature.fid_persis == 1, 'drought persistence is likely', $feature.fid_dev == 1, 'potential drought development is likely', $feature.fid_improv == 1, 'drought improvement is favored', $feature.fid_remove == 1, 'drought removal is favored', 'n/a')"
+          }]
+        }
 
         // initialize the WFSLayer
         const droughtLayer = new WFSLayer({
           url: "https://idpgis.ncep.noaa.gov/arcgis/services/NWS_Climate_Outlooks/cpc_drought_outlk/MapServer/WFSServer",
           name: "Seasonal_Drought_Outlook",
-          renderer: uniqueValueRenderer
+          title: "US Seasonal Drought Outlook (Feb - May 2022)",
+          copyright: "NOAA/NWS/NCEP/Climate Prediction Center",
+          popupTemplate: popupTemplate
         });
 
         const map = new Map({
-          basemap: "topo-vector",
+          basemap: "gray-vector",
           layers: [droughtLayer]
         });
 
@@ -117,51 +105,41 @@
         });
 
         const legend = new Legend({
-          view: view
+          view: view,
+          container: "legendDiv"
         });
 
-        view.ui.add(legend, "top-right");
-
-        droughtLayer.when(() => {
-          console.log(droughtLayer);
-          if(droughtLayer.fields) {
-            createPopupTemplate(droughtLayer);
-          }
-          queryFeatures(droughtLayer);
-        });
-
-        function createPopupTemplate(layer) {
-          const fieldInfos = generateFieldInfos(layer.fields);
-
-          const popupTemplate = {
-            title: "Temporary Title",
-            content: [
-              {
-                type: "fields",
-                fieldInfos: fieldInfos
-              }
-            ]
-          }
-
-          layer.popupTemplate = popupTemplate;
-        }
-
-        function generateFieldInfos(fields) {
-          const infos = fields.map((field) => {
-            return { fieldName: field.name, label: field.name }
+        // visualization based on categorical field
+        let typeParams = {
+          layer: droughtLayer,
+          view: view,
+          valueExpression: droughtArcade,
+          defaultSymbolEnabled: false
+        };
+        // when the promise resolves, apply the visual variables to the renderer
+        typeRendererCreator
+          .createRenderer(typeParams)
+          .then(function (response) {
+            droughtLayer.renderer = response.renderer;
           });
 
-          return infos;
-        }
+        view.ui.add("infoDiv", "top-right");
 
-        function queryFeatures(layer) {
-          const query = layer.createQuery();
-          query.where = "1=1";
+        // filter features via the dropdown
+        const filterSelect = document.getElementById("filter");
 
-          layer.queryFeatures(query).then((results) => {
-            console.log('features: ', results);
-          })
-        }
+        view.whenLayerView(droughtLayer)
+          .then((layerView) => {
+            filterSelect.addEventListener("input", (event) => {
+              layerView.featureEffect = new FeatureEffect({
+                filter: {
+                  where: event.target.value
+                },
+                includedEffect: "drop-shadow(-10px, 10px, 6px gray)",
+                excludedEffect: "opacity(30%)"
+              });
+            });
+        });
 
       });
     </script>
@@ -169,5 +147,16 @@
 
   <body>
     <div id="viewDiv"></div>
+    <div id="infoDiv" class="esri-widget">
+      <div id="legendDiv"></div>
+      <p id="p-heading">Filter by category</p>
+      <select id="filter" class="esri-select">
+        <option value="1=1">Show all</option>
+        <option value="fid_dev=1">Drought Could Develop</option>
+        <option value="fid_remove=1">Drought Could End</option>
+        <option value="fid_persis=1">Drought Persists</option>
+        <option value="fid_improv=1">Drought Could Improve</option>
+      </select>
+    </div>
   </body>
 </html>
