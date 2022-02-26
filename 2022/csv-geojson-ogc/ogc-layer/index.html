@@ -1,0 +1,173 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="initial-scale=1,maximum-scale=1,user-scalable=no"
+    />
+    <title>WFSLayer</title>
+
+    <link rel="stylesheet" href="https://js.arcgis.com/4.23/esri/themes/light/main.css" />
+
+    <style>
+      html,
+      body,
+      #viewDiv {
+        padding: 0;
+        margin: 0;
+        height: 100%;
+        width: 100%;
+      }
+      .esri-legend .esri-legend__layer-caption {
+        display: none;
+      }
+    </style>
+
+    <script src="https://js.arcgis.com/4.23/"></script>
+
+    <script>
+      require([
+        "esri/Map",
+        "esri/layers/WFSLayer",
+        "esri/views/MapView",
+        "esri/renderers/UniqueValueRenderer",
+        "esri/widgets/Legend"
+      ], function(
+        Map,
+        WFSLayer,
+        MapView,
+        UniqueValueRenderer,
+        Legend
+      ) {
+        // initialize the renderer
+        const uniqueValueRenderer = new UniqueValueRenderer({
+          field: "fid_persis",
+          field2: "fid_remove",
+          field3: "fid_dev",
+          defaultSymbol: { 
+            type: "simple-fill",
+            style: "solid",
+            color: "#DED2BC",
+            outline: {
+              color: [255, 255, 255],
+              width: 1
+            }
+          },
+          fieldDelimiter: ", ",
+          uniqueValueInfos: [
+            {
+              label: "Drought persist",
+              value: "1, 0, 0",
+              symbol: {
+                type: "simple-fill",
+                style: "solid",
+                color: "#9B634A",
+                outline: {
+                  color: [255, 255, 255],
+                  width: 1
+                }
+              }
+            },
+            {
+              label: "Drought removal likely",
+              value: "0, 1, 0",
+              symbol: {
+                type: "simple-fill",
+                style: "solid",
+                color: "#B2AD69",
+                outline: {
+                  color: [255, 255, 255],
+                  width: 1
+                }
+              }
+            },
+            {
+              label: "drought development likely",
+              value: "0, 0, 1",
+              symbol: {
+                type: "simple-fill",
+                style: "solid",
+                color: "#FFDE63",
+                outline: {
+                  color: [255, 255, 255],
+                  width: 1
+                }
+              }
+            }
+          ] 
+        });
+
+        // initialize the WFSLayer
+        const droughtLayer = new WFSLayer({
+          url: "https://idpgis.ncep.noaa.gov/arcgis/services/NWS_Climate_Outlooks/cpc_drought_outlk/MapServer/WFSServer",
+          name: "Seasonal_Drought_Outlook",
+          renderer: uniqueValueRenderer
+        });
+
+        const map = new Map({
+          basemap: "topo-vector",
+          layers: [droughtLayer]
+        });
+
+        const view = new MapView({
+          container: "viewDiv",
+          map: map,
+          center: [-100, 34],
+          zoom: 4
+        });
+
+        const legend = new Legend({
+          view: view
+        });
+
+        view.ui.add(legend, "top-right");
+
+        droughtLayer.when(() => {
+          console.log(droughtLayer);
+          if(droughtLayer.fields) {
+            createPopupTemplate(droughtLayer);
+          }
+          queryFeatures(droughtLayer);
+        });
+
+        function createPopupTemplate(layer) {
+          const fieldInfos = generateFieldInfos(layer.fields);
+
+          const popupTemplate = {
+            title: "Temporary Title",
+            content: [
+              {
+                type: "fields",
+                fieldInfos: fieldInfos
+              }
+            ]
+          }
+
+          layer.popupTemplate = popupTemplate;
+        }
+
+        function generateFieldInfos(fields) {
+          const infos = fields.map((field) => {
+            return { fieldName: field.name, label: field.name }
+          });
+
+          return infos;
+        }
+
+        function queryFeatures(layer) {
+          const query = layer.createQuery();
+          query.where = "1=1";
+
+          layer.queryFeatures(query).then((results) => {
+            console.log('features: ', results);
+          })
+        }
+
+      });
+    </script>
+  </head>
+
+  <body>
+    <div id="viewDiv"></div>
+  </body>
+</html>
