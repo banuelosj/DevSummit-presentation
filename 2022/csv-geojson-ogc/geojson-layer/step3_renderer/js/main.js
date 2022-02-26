@@ -4,16 +4,14 @@ require([
   "esri/views/MapView",
   "esri/widgets/Legend",
   "esri/layers/FeatureLayer",
-  "esri/smartMapping/renderers/type",
-  "esri/widgets/FeatureTable",
+  "esri/smartMapping/renderers/type"
 ], (
   Map,
   GeoJSONLayer,
   MapView,
   Legend,
   FeatureLayer,
-  typeRendererCreator,
-  FeatureTable
+  typeRendererCreator
 ) => {
   const firesURL =
     "https://laurenb.esri.com/DevSummit/2022/GeoJSON-Demo/data/FirePerimeters.geojson";
@@ -144,63 +142,4 @@ require([
     container: "legend",
   });
   view.ui.add(legend, "top-right");
-
-  // Typical usage for FeatureTable widget. This will recognize all fields in the layer if none are set.
-  const featureTable = new FeatureTable({
-    view: view,
-    layer: fireLayer,
-    container: "container", //document.createElement("div")
-  });
-  const appContainer = document.getElementById("appContainer");
-  const tableContainer = document.getElementById("container");
-  const featuretableSwitch = document.getElementById("feature-table-switch");
-  // Don't initially display the FeatureTable
-  appContainer.removeChild(tableContainer);
-  featuretableSwitch.addEventListener("calciteSwitchChange", (evt) => {
-    toggleFeatureTable();
-  });
-
-  function toggleFeatureTable() {
-    // Check if the table is displayed, if so, toggle off. If not, display.
-    if (!featuretableSwitch.checked) {
-      appContainer.removeChild(tableContainer);
-    } else {
-      appContainer.appendChild(tableContainer);
-    }
-  }
-
-  const sortOrder = document.getElementById("sort-order");
-  const ascText = "Sort features with older fires on top";
-  const descText = "Sort features with newer fires on top";
-  // logic for toggling ascending and descending order
-  sortOrder.addEventListener("click", () => {
-    // Add query to zoom to relevant extent
-    const targetFireQuery = fireLayer.createQuery();
-    targetFireQuery.where = "FIRE_NAME = 'HENNESSEY'";
-    targetFireQuery.returnGeometry = true;
-    fireLayer.queryFeatures(targetFireQuery).then((results) => {
-      // Go to the specific extent
-      view.goTo(results.features[0].geometry);
-    });
-
-    // Set the layer to be ordered
-    const order =
-      fireLayer.orderBy[0].order === "ascending" ? "descending" : "ascending";
-
-    fireLayer.orderBy = [
-      {
-        field: "YEAR_",
-        order,
-      },
-    ];
-
-    // toggles UI icon and description for the sortOrder button
-    if (order === "ascending") {
-      sortOrder.text = descText;
-      sortOrder.icon = `sort-descending-arrow`;
-    } else {
-      sortOrder.text = ascText;
-      sortOrder.icon = `sort-ascending-arrow`;
-    }
-  });
 });
