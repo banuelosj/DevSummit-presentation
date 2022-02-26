@@ -1,0 +1,27 @@
+html,
+      body {
+        height: 100%;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      #appContainer {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        width: 100%;
+      }
+      #viewDiv {
+        flex: 1;
+        width: 100%;
+      }
+      .esri-legend .esri-legend__layer-caption {
+        display: none;
+      }
+      .popupSpan {
+        color: #0079c1;
+        font-weight: bold;
+      }
+      #legend {
+        width: 260px;
+      }
