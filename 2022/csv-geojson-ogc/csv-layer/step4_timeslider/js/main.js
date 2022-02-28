@@ -194,6 +194,7 @@ require([
   });
 
   // set the TimeSlider widget time extent and stops
+  // wait for the layer to load first
   windCSVLayer.when(() => {
     timeSlider.fullTimeExtent = windCSVLayer.timeInfo.fullTimeExtent;
     timeSlider.stops = {
@@ -204,8 +205,5 @@ require([
     };
     timeSlider.playRate = 1500;  // 1500 milliseconds
   });
-  // view.whenLayerView(windCSVLayer).then(() => {
-    
-  // });
     
 });
