@@ -1,0 +1,24 @@
+html,
+body,
+#viewDiv {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  width: 100%;
+}
+#timeSlider {
+  position: absolute;
+  left: 5%;
+  right: 5%;
+  bottom: 20px;
+}
+.center {
+  position: absolute;
+  left: 35%;
+  right: 50%;
+  width: 650px;
+}
+.popupSpan {
+  color: #0079C1;
+  font-weight: bold;
+}
