@@ -1,3 +1,8 @@
+/**
+ * Step 3: Configure a Renderer
+ * This sample demonstrates how to create a new renderer using Smartmappping
+ * along with how to add a legend with the new renderer.
+ */
 require([
   "esri/Map",
   "esri/layers/GeoJSONLayer",

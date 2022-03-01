@@ -1,3 +1,8 @@
+/**
+ * Step 2: Add Popups
+ * This sample demonstrates how to add Popups to the layer using a PopupTemplate
+ * and a function to configure the content.
+ */
 require([
   "esri/Map",
   "esri/layers/GeoJSONLayer",

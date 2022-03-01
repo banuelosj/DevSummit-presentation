@@ -1,3 +1,7 @@
+/**
+ * Step 4: Add layer ordering by fields
+ * This sample demonstrates how to add feature ordering within a layer based on a field.
+ */
 require([
     "esri/Map",
     "esri/layers/GeoJSONLayer",

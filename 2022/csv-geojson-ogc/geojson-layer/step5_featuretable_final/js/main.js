@@ -1,3 +1,7 @@
+/**
+ * Step 5: Add FeatureTable
+ * This sample demonstrates how to add a FeatureTable that references the GeoJSONLayer.
+ */
 require([
   "esri/Map",
   "esri/layers/GeoJSONLayer",
