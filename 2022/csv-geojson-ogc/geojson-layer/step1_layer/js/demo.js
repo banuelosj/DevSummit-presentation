@@ -6,12 +6,14 @@ require([
   "esri/Map",
   "esri/views/MapView",
   //"esri/layers/GeoJSONLayer",
-  //"esri/layers/FeatureLayer"
+  //"esri/layers/FeatureLayer",
+  //"esri/widgets/Legend"
 ], (
   Map,
   MapView,
   //GeoJSON,
-  //FeatureLayer
+  //FeatureLayer,
+  //Legend
 ) => {
 
   // *** Add GeoJSON Layer
@@ -36,4 +38,6 @@ require([
     },
     map: map,
   });
+
+  // *** Add the Legend
 });

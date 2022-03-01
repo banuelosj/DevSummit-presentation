@@ -28,3 +28,16 @@
     },
     effect: "drop-shadow(-10px, 10px, 6px gray)",
   });
+
+  // Create the Legend
+  const legend = new Legend({
+    view: view,
+    layerInfos: [
+      {
+        title: "California Fire Perimeters",
+        layer: fireLayer,
+      },
+    ],
+    container: "legend",
+  });
+  view.ui.add(legend, "top-right");

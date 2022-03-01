@@ -7,12 +7,14 @@ require([
   "esri/Map",
   "esri/layers/GeoJSONLayer",
   "esri/views/MapView",
-  "esri/layers/FeatureLayer"
+  "esri/layers/FeatureLayer",
+  "esri/widgets/Legend"
 ], (
   Map,
   GeoJSONLayer,
   MapView,
-  FeatureLayer
+  FeatureLayer,
+  Legend
 ) => {
   const firesURL = "https://banuelosj.github.io/DevSummit-presentation/2022/csv-geojson-ogc/data/FirePerimeters.geojson";
 
@@ -60,4 +62,17 @@ require([
     },
     map: map,
   });
+
+  // Create the Legend
+  const legend = new Legend({
+    view: view,
+    layerInfos: [
+      {
+        title: "California Fire Perimeters",
+        layer: fireLayer,
+      },
+    ],
+    container: "legend",
+  });
+  view.ui.add(legend, "top-right");
 });
