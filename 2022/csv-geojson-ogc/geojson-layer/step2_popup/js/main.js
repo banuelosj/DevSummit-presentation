@@ -66,11 +66,6 @@ require([
     copyright:
       "State of California and the Department of Forestry and Fire Protection",
     popupTemplate: fireTemplate,
-    orderBy: [
-      {
-        field: "YEAR_",
-      },
-    ],
     title: "California Fire Perimeters",
   });
 
