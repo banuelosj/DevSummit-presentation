@@ -13,8 +13,8 @@ require([
   FeatureLayer,
   typeRendererCreator
 ) => {
-  const firesURL =
-    "https://laurenb.esri.com/DevSummit/2022/GeoJSON-Demo/data/FirePerimeters.geojson";
+  const firesURL = "https://opendata.arcgis.com/datasets/84fa4b424c1b4a9f91a1d4e014d4ad0b_0.geojson";
+  //const firesURL = "https://banuelosj.github.io/DevSummit-presentation/2022/csv-geojson-ogc/data/FirePerimeters.geojson";
 
   // Create popup template for layer
   const fireTemplate = {
