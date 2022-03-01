@@ -1,6 +1,6 @@
 /**
  * Step 1: Add a GeoJSONLayer
- * This sample demonstrates how to initialize GeoJSONLayers, and add them to the map.
+ * This sample demonstrates how to initialize GeoJSONLayers, and add them to the map along with a Legend.
  */
 require([
   "esri/Map",

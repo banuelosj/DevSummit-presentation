@@ -1,7 +1,6 @@
 /**
  * Step 3: Configure a Renderer
- * This sample demonstrates how to create a new renderer using Smartmappping
- * along with how to add a legend with the new renderer.
+ * This sample demonstrates how to create a new renderer using Smartmappping.
  */
 require([
   "esri/Map",
