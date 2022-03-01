@@ -7,8 +7,9 @@
 require([
   "esri/Map",
   "esri/views/MapView",
-  "esri/layers/WFSLayer"
-], (Map, MapView, WFSLayer) => {
+  "esri/layers/WFSLayer",
+  "esri/widgets/Legend"
+], (Map, MapView, WFSLayer, Legend) => {
   // create a PopupTemplate and configure an aracade expression
   const droughtPopupTemplate = {
     title: "Drought Outlook (Feb - May 2022)",
@@ -45,5 +46,13 @@ require([
     center: [-100, 34],
     zoom: 4
   });
+
+  // initialize the Legend widget
+  const legend = new Legend({
+    view: view
+  });
+
+  // add the Legend to the view
+  view.ui.add(legend, "top-right");
     
 });

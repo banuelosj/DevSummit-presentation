@@ -5,8 +5,9 @@
 require([
   "esri/Map",
   "esri/views/MapView",
-  "esri/layers/WFSLayer"
-], (Map, MapView, WFSLayer) => {
+  "esri/layers/WFSLayer",
+  "esri/widgets/Legend"
+], (Map, MapView, WFSLayer, Legend) => {
   // initialize a WFSLayer
   const droughtWFSLayer = new WFSLayer({
     url: "https://idpgis.ncep.noaa.gov/arcgis/services/NWS_Climate_Outlooks/cpc_drought_outlk/MapServer/WFSServer",
@@ -28,5 +29,12 @@ require([
     center: [-100, 34],
     zoom: 4
   });
-    
+  
+  // initialize the Legend widget
+  const legend = new Legend({
+    view: view
+  });
+
+  // add the Legend to the view
+  view.ui.add(legend, "top-right");
 });

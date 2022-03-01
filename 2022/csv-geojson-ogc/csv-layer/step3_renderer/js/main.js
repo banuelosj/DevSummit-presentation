@@ -9,9 +9,9 @@ require([
   "esri/Map",
   "esri/views/MapView",
   "esri/layers/CSVLayer",
-  "esri/renderers/SimpleRenderer",
-  "esri/widgets/Legend"
-], (Map, MapView, CSVLayer, SimpleRenderer, Legend) => {
+  "esri/widgets/Legend",
+  "esri/renderers/SimpleRenderer"
+], (Map, MapView, CSVLayer, Legend, SimpleRenderer) => {
   // create a wind data SimpleRenderer with rotation and size visual variables.
   const windRenderer = new SimpleRenderer({
     symbol: {
@@ -130,7 +130,7 @@ require([
   // initialize a CSVLayer
   const windCSVLayer = new CSVLayer({
     title: "Wind Station Data",
-    url: "https://jbanuelos1.esri.com/data/csv/wind_data_2_18_full.csv",
+    url: "https://banuelosj.github.io/DevSummit-presentation/2022/csv-geojson-ogc/data/wind_data_2_18_full.csv",
     copyright: "NOAA",
     popupTemplate: windPopupTemplate,
     renderer: windRenderer
@@ -145,7 +145,7 @@ require([
   // display data from 2/18/2022 which is the date interval for the wind data layer
   const fireCSVLayer = new CSVLayer({
     title: "Wildland Fire Locations",
-    url: "https://jbanuelos1.esri.com/data/csv/WFIGS_2022_Wildland_Fire_Locations.csv",
+    url: "https://banuelosj.github.io/DevSummit-presentation/2022/csv-geojson-ogc/data/WFIGS_2022_Wildland_Fire_Locations.csv",
     copyright: "WFIGS",
     definitionExpression: `${dateField} > DATE '${startTime}' AND ${dateField} < DATE '${endTime}'`,
     popupTemplate: firePopupTemplate,

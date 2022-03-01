@@ -1,8 +1,9 @@
 require([
   "esri/Map",
   "esri/views/MapView",
-  "esri/layers/CSVLayer"
-], (Map, MapView, CSVLayer) => {
+  "esri/layers/CSVLayer",
+  "esri/widgets/Legend"
+], (Map, MapView, CSVLayer, Legend) => {
   // *** create a PopupTemplate for the wind data layer using fieldInfos.
 
   // *** create a PopupTemplate for the fire data layer with a custom arcade expression.
@@ -49,5 +50,13 @@ require([
       spatialReference: { wkid: 102100 }
     }
   });
+
+  // add the Legend widget
+  const legend = new Legend({
+    view: view
+  });
+
+  // add the Legend to the view
+  view.ui.add(legend, "top-right");
     
 });

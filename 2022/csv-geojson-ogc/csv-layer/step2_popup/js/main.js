@@ -6,8 +6,9 @@
 require([
   "esri/Map",
   "esri/views/MapView",
-  "esri/layers/CSVLayer"
-], (Map, MapView, CSVLayer) => {
+  "esri/layers/CSVLayer",
+  "esri/widgets/Legend"
+], (Map, MapView, CSVLayer, Legend) => {
   // create a PopupTemplate for the wind data layer using fieldInfos.
   const windPopupTemplate = {
     title: "Station: {station_id}",
@@ -64,7 +65,7 @@ require([
   // initialize a CSVLayer
   const windCSVLayer = new CSVLayer({
     title: "Wind Station Data",
-    url: "https://jbanuelos1.esri.com/data/csv/wind_data_2_18_full.csv",
+    url: "https://banuelosj.github.io/DevSummit-presentation/2022/csv-geojson-ogc/data/wind_data_2_18_full.csv",
     copyright: "NOAA",
     popupTemplate: windPopupTemplate
   });
@@ -78,7 +79,7 @@ require([
   // display data from 2/18/2022 which is the date interval for the wind data layer
   const fireCSVLayer = new CSVLayer({
     title: "Wildland Fire Locations",
-    url: "https://jbanuelos1.esri.com/data/csv/WFIGS_2022_Wildland_Fire_Locations.csv",
+    url: "https://banuelosj.github.io/DevSummit-presentation/2022/csv-geojson-ogc/data/WFIGS_2022_Wildland_Fire_Locations.csv",
     copyright: "WFIGS",
     definitionExpression: `${dateField} > DATE '${startTime}' AND ${dateField} < DATE '${endTime}'`,
     popupTemplate: firePopupTemplate
@@ -103,5 +104,13 @@ require([
       spatialReference: { wkid: 102100 }
     }
   });
+
+  // add the Legend widget
+  const legend = new Legend({
+    view: view
+  });
+
+  // add the Legend to the view
+  view.ui.add(legend, "top-right");
     
 });

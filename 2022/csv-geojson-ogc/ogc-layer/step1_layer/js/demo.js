@@ -5,8 +5,9 @@
 require([
   "esri/Map",
   "esri/views/MapView",
-  // "esri/layers/WFSLayer"
-], (Map, MapView, WFSLayer) => {
+  // "esri/layers/WFSLayer",
+  // "esri/widgets/Legend"
+], (Map, MapView, WFSLayer, Legend) => {
   // *** initialize a WFSLayer
 
   // add the WFSLayer to the map
@@ -22,5 +23,7 @@ require([
     center: [-100, 34],
     zoom: 4
   });
+
+  // *** add the Legend widget
     
 });

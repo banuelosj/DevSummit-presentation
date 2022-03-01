@@ -3,14 +3,6 @@
 // you set up in the expression.
 const droughtArcade = document.getElementById("drought-renderer").text;
 
-// initialize the Legend widget
-const legend = new Legend({
-  view: view
-});
-
-// add the Legend to the view
-view.ui.add(legend, "top-right");
-
 // visualization based on categorical field
 let typeParams = {
   layer: droughtWFSLayer,

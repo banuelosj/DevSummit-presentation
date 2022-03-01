@@ -1,8 +1,9 @@
 require([
   "esri/Map",
   "esri/views/MapView",
-  // "esri/layers/CSVLayer"
-], (Map, MapView, CSVLayer) => {
+  // "esri/layers/CSVLayer",
+  // "esri/widgets/Legend"
+], (Map, MapView, CSVLayer, Legend) => {
   // *** initialize windCSVLayer
 
   // *** initialize fireCSVLayer
@@ -25,5 +26,8 @@ require([
       spatialReference: { wkid: 102100 }
     }
   });
+
+  // *** add Legend widget
+
     
 });

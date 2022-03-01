@@ -5,3 +5,11 @@ const droughtWFSLayer = new WFSLayer({
   title: "US Seasonal Drought Outlook (Feb - May 2022)",
   copyright: "NOAA/NWS/NCEP/Climate Prediction Center"
 });
+
+// initialize the Legend widget
+const legend = new Legend({
+  view: view
+});
+
+// add the Legend to the view
+view.ui.add(legend, "top-right");

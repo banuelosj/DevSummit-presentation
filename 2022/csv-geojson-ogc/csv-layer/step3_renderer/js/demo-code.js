@@ -59,11 +59,3 @@ const fireRenderer = new SimpleRenderer({
     }
   ]
 });
-
-// add the Legend widget
-const legend = new Legend({
-  view: view
-});
-
-// add the Legend to the view
-view.ui.add(legend, "top-right");

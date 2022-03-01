@@ -2,9 +2,9 @@ require([
   "esri/Map",
   "esri/views/MapView",
   "esri/layers/CSVLayer",
-  // "esri/renderers/SimpleRenderer",
-  // "esri/widgets/Legend"
-], (Map, MapView, CSVLayer, SimpleRenderer, Legend) => {
+  "esri/widgets/Legend",
+  // "esri/renderers/SimpleRenderer"
+], (Map, MapView, CSVLayer, Legend, SimpleRenderer) => {
   // *** create a wind data SimpleRenderer with rotation and size visual variables.
 
   // *** create a fire data SimpleRenderer with size visual variables
@@ -107,6 +107,12 @@ require([
     }
   });
 
-  // *** add Legend widget
+  // add the Legend widget
+  const legend = new Legend({
+    view: view
+  });
+
+  // add the Legend to the view
+  view.ui.add(legend, "top-right");
     
 });

@@ -2,7 +2,7 @@ require([
   "esri/Map",
   "esri/views/MapView",
   "esri/layers/WFSLayer",
-  // "esri/widgets/Legend",
+  "esri/widgets/Legend",
   // "esri/smartMapping/renderers/type"
 ], (Map, MapView, WFSLayer, Legend, typeRendererCreator) => {
   // *** add path to arcade script txt file
@@ -44,7 +44,13 @@ require([
     zoom: 4
   });
 
-  // *** add the Legend
+  // initialize the Legend widget
+  const legend = new Legend({
+    view: view
+  });
+
+  // add the Legend to the view
+  view.ui.add(legend, "top-right");
 
   // *** add smartmapping
     
