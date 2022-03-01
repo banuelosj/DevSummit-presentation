@@ -1,17 +1,11 @@
-/**
- * Step 3: Add a Renderer.
- * This sample demonstrates how to add renderers to the CSVLayers. These
- * renderers will also contain visual variable to help visualize the data in a way
- * that is easier to understand.
- * This sample also adds the Legend widget.
- */
 require([
   "esri/Map",
   "esri/views/MapView",
   "esri/layers/CSVLayer",
   "esri/renderers/SimpleRenderer",
-  "esri/widgets/Legend"
-], (Map, MapView, CSVLayer, SimpleRenderer, Legend) => {
+  "esri/widgets/Legend",
+  // "esri/widgets/TimeSlider"
+], (Map, MapView, CSVLayer, SimpleRenderer, Legend, TimeSlider) => {
   // create a wind data SimpleRenderer with rotation and size visual variables.
   const windRenderer = new SimpleRenderer({
     symbol: {
@@ -133,7 +127,8 @@ require([
     url: "https://jbanuelos1.esri.com/data/csv/wind_data_2_18_full.csv",
     copyright: "NOAA",
     popupTemplate: windPopupTemplate,
-    renderer: windRenderer
+    renderer: windRenderer,
+    // *** add timeInfo
   });
 
   // date variables for the fire data definition expression
@@ -172,12 +167,14 @@ require([
     }
   });
 
-  // add the Legend widget
+  // initialize the Legend widget
   const legend = new Legend({
     view: view
   });
 
   // add the Legend to the view
   view.ui.add(legend, "top-right");
+
+// *** add TimeSlider widget
     
 });
