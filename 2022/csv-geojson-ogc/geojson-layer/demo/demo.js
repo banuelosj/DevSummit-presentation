@@ -1,28 +1,23 @@
-/**
- * Step 1: Add a GeoJSONLayer
- * This sample demonstrates how to initialize GeoJSONLayers, and add them to the map along with a Legend.
- */
 require([
   "esri/Map",
   "esri/views/MapView",
   //"esri/layers/GeoJSONLayer",
   //"esri/layers/FeatureLayer",
-  //"esri/widgets/Legend"
+  //"esri/smartMapping/renderers/type",
+  //"esri/widgets/Legend",
+  //"esri/widgets/FeatureTable"
 ], (
   Map,
   MapView,
-  //GeoJSON,
-  //FeatureLayer,
-  //Legend
+  GeoJSONLayer,
+  FeatureLayer,
+  typeRendererCreator,
+  Legend,
+  FeatureTable
 ) => {
 
-  // *** Add GeoJSON Layer
-
-  // *** Add FeatureLayer
-
-
   const map = new Map({
-    basemap: "gray-vector"
+    basemap: "gray-vector",
     // *** Add layers to map
   });
 
@@ -39,5 +34,4 @@ require([
     map: map,
   });
 
-  // *** Add the Legend
 });

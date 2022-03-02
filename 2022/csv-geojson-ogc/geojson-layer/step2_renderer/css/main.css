@@ -19,3 +19,9 @@ html,
         color: #0079c1;
         font-weight: bold;
       }
+      #legend {
+        width: 260px;
+      }
+      .esri-legend .esri-legend__layer-caption {
+        display: none;
+      }
