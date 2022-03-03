@@ -4,7 +4,7 @@ require([
   "esri/layers/WFSLayer",
   "esri/widgets/Legend"
 ], (Map, MapView, WFSLayer, Legend) => {
-  // *** create a PopupTemplate and configure an aracade expression
+  // *** create a PopupTemplate and configure an arcade expression
   
   // initialize a WFSLayer
   const droughtWFSLayer = new WFSLayer({

@@ -4,8 +4,9 @@
 require([
   "esri/Map",
   "esri/views/MapView",
-  "esri/layers/CSVLayer"
-], function (Map, MapView, CSVLayer) {
+  "esri/layers/CSVLayer",
+  "esri/widgets/Legend"
+], function (Map, MapView, CSVLayer, Legend) {
 
   const popupTemplate = {
     title: "{movie}",
@@ -22,8 +23,8 @@ require([
             label: "Release year"
           },
           {
-            fieldName: "imdb_rating",
-            label: "IMDB rating"
+            fieldName: "rating",
+            label: "Movie rating"
           }
         ]
       }
@@ -33,25 +34,23 @@ require([
   const simpleRenderer = {
     type: "simple",
     symbol: {
-      type: "simple-marker",
-      style: "circle",
-      color: "#F0BAB4",
-      size: 14
+      type: "picture-marker",
+      url: "https://jbanuelos1.esri.com/images/cobweb.png",
+      width: "64px",
+      height: "64px"
     },
-    // color visual variables based of the 'imdb_rating' field
     visualVariables: [
       {
-        type: "color",
-        field: "imdb_rating",
+        type: "size",
+        field: "rating",
         stops: [
-          { value: 9, color: "#1a9641"}, // green
-          { value: 7, color: "#a6d96a"},
-          { value: 5, color: "#ffffbf"},
-          { value: 3, color: "#fdae61"},
-          { value: 1, color: "#d7191c"} // red
+          { value: 4, size: 50, label: "> 4 stars"},
+          { value: 3, size: 40, label:"3 stars"},
+          { value: 2, size: 30, label:"2 stars"},
+          { value: 1, size: 20, label:"< 1 stars"}
         ],
         legendOptions: {
-          title: "IMDB rating"
+          title: "Movie rating"
         }
       }
     ]
@@ -64,7 +63,7 @@ require([
   });
 
   const map = new Map({
-    basemap: "topo-vector",
+    basemap: "gray-vector",
     layers: [csvLayer]
   });
 
@@ -74,4 +73,9 @@ require([
     center: [-90, 34],
     zoom: 4
   });
+
+  const legend = new Legend({
+    view: view
+  });
+  view.ui.add(legend, "top-right");
 });
