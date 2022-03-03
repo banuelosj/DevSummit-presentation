@@ -12,7 +12,7 @@ require([
   // create an instance of a CSVLayer
   // pass in the url to the data
   const csvLayer = new CSVLayer({
-    url: "https://jbanuelos1.esri.com/data/csv/horror_film_locations.csv"
+    url: "https://jbanuelos1.esri.com/data/csv/horror_film_locations_new.csv"
   });
 
   const map = new Map({

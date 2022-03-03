@@ -1,0 +1,27 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>Step 5: Radius</title>
+
+    <script type="module" src="https://js.arcgis.com/calcite-components/1.0.0-beta.77/calcite.esm.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://js.arcgis.com/calcite-components/1.0.0-beta.77/calcite.css" />
+
+    <link rel="stylesheet" href="https://js.arcgis.com/4.23/esri/themes/light/main.css" />
+    <link rel="stylesheet" href="css/main.css">
+    
+    <script src="https://js.arcgis.com/4.23/"></script>
+    <script src="js/main.js"></script>
+  </head>
+
+  <body>
+    <calcite-panel id="panel" heading="Movies filmed nearby">
+      <calcite-block open id="headingBlock">
+        <calcite-label>Radius (miles)
+          <div id="radiusSlider"></div>
+        </calcite-label>
+      </calcite-block>
+    </calcite-panel>
+    <div id="viewDiv"></div>
+  </body>  
+</html>
