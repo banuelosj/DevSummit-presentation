@@ -56,6 +56,7 @@ const droughtPopupTemplate = {
 /** Step3 Complete **/
 
 /** Step4 FeatureEffect **/
+container: "legendDiv"
 
 view.ui.add("infoDiv", "top-right");
 

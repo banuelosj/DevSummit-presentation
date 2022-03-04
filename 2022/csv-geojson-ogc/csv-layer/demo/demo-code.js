@@ -20,6 +20,14 @@ const fireCSVLayer = new CSVLayer({
   copyright: "WFIGS",
   definitionExpression: `${dateField} > DATE '${startTime}' AND ${dateField} < DATE '${endTime}'`,
 });
+
+  // initialize the Legend widget
+  const legend = new Legend({
+    view: view
+  });
+
+  // add the Legend to the view
+  view.ui.add(legend, "top-right");
 /** Step1: Complete **/
 
 /** Step2: Add Renderer **/
