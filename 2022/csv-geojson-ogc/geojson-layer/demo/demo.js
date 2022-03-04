@@ -1,20 +1,22 @@
 require([
   "esri/Map",
   "esri/views/MapView",
-  //"esri/layers/GeoJSONLayer",
+  "esri/layers/GeoJSONLayer",
   //"esri/layers/FeatureLayer",
-  //"esri/smartMapping/renderers/type",
   //"esri/widgets/Legend",
+  //"esri/smartMapping/renderers/type",
   //"esri/widgets/FeatureTable"
 ], (
   Map,
   MapView,
   GeoJSONLayer,
   FeatureLayer,
-  typeRendererCreator,
   Legend,
+  typeRendererCreator,
   FeatureTable
 ) => {
+
+    
 
   const map = new Map({
     basemap: "gray-vector",

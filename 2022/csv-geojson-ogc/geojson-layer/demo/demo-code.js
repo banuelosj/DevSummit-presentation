@@ -1,11 +1,8 @@
 // *** Step 1 - Add GeoJSON Layer
 
-// Add GeoJSON Layer
-const firesURL =
-  "https://banuelosj.github.io/DevSummit-presentation/2022/csv-geojson-ogc/data/FirePerimeters.geojson";
 // Create GeoJSONLayer from GeoJSON data
 const fireLayer = new GeoJSONLayer({
-  url: firesURL,
+  url: "https://banuelosj.github.io/DevSummit-presentation/2022/csv-geojson-ogc/data/FirePerimeters.geojson",
   copyright:
     "State of California and the Department of Forestry and Fire Protection",
   title: "California Fire Perimeters",
@@ -126,6 +123,16 @@ const ascText = "Sort features with older fires on top";
 const descText = "Sort features with newer fires on top";
 // logic for toggling ascending and descending order in click event
 sortOrder.addEventListener("click", () => {
+
+  // Add query to zoom to relevant extent at beginning of click event
+  const targetFireQuery = fireLayer.createQuery();
+  targetFireQuery.where = "FIRE_NAME = 'HENNESSEY'";
+  targetFireQuery.returnGeometry = true;
+  fireLayer.queryFeatures(targetFireQuery).then((results) => {
+    // Go to the specific extent
+    view.goTo(results.features[0].geometry);
+  });
+
   // Set the layer to be ordered
   const order =
     fireLayer.orderBy[0].order === "ascending" ? "descending" : "ascending";
@@ -146,15 +153,6 @@ sortOrder.addEventListener("click", () => {
     sortOrder.icon = `sort-ascending-arrow`;
   }
 });
-
-  // Add query to zoom to relevant extent at beginning of click event
-  const targetFireQuery = fireLayer.createQuery();
-  targetFireQuery.where = "FIRE_NAME = 'HENNESSEY'";
-  targetFireQuery.returnGeometry = true;
-  fireLayer.queryFeatures(targetFireQuery).then((results) => {
-    // Go to the specific extent
-    view.goTo(results.features[0].geometry);
-  });
 
   // *** END Step 4 Add Orderby
 
