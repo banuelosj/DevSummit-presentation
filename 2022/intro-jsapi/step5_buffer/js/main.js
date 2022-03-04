@@ -133,7 +133,7 @@ require([
       geometry: bufferPolygon,
       symbol: {
         type: "simple-fill",
-        color: [247, 99, 0, 0.5],
+        color: [247, 99, 0, 0.3],
         style: "solid",
         outline: {
           color: "#ffffff",

@@ -150,7 +150,7 @@ require([
       geometry: bufferPolygon,
       symbol: {
         type: "simple-fill",
-        color: [247, 99, 0, 0.5],
+        color: [247, 99, 0, 0.3],
         style: "solid",
         outline: {
           color: "#ffffff",
@@ -216,7 +216,7 @@ require([
 
       const description = document.createElement("p");
       description.style["font-size"] = "16px";
-      description.innerHTML = `<b><i>${feature.attributes.movie}</i></b> was filmed in ${feature.attributes.film_shot_location}`;
+      description.innerHTML = `<span style="color: #00A0FF"><b><i>${feature.attributes.movie}</i></b></span> was filmed in ${feature.attributes.film_shot_location}`;
 
       movieCard.appendChild(titleSpan);
       movieCard.appendChild(subtitleSpan);
