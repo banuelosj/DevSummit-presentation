@@ -118,6 +118,13 @@ function formatContent(feature) {
 
 // *** Step 4 Add Orderby
 
+// Add ordeyBy property to layer
+orderBy: [
+  {
+    field: "YEAR_"
+  }
+]
+
 const sortOrder = document.getElementById("sort-order");
 const ascText = "Sort features with older fires on top";
 const descText = "Sort features with newer fires on top";
