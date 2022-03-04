@@ -7,7 +7,7 @@ require([
   // "esri/layers/support/FeatureEffect"
 ], (Map, MapView, WFSLayer, Legend, typeRendererCreator, FeatureEffect) => {
 
-  // initialize the map
+  // initialize the 
   const map = new Map({
     basemap: "gray-vector",
     // *** add layer to the map

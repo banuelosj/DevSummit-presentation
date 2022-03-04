@@ -8,7 +8,7 @@ require([
   "esri/views/MapView",
   "esri/layers/CSVLayer",
   "esri/widgets/Legend",
-    "esri/renderers/SimpleRenderer"
+  "esri/renderers/SimpleRenderer"
 ], (Map, MapView, CSVLayer, Legend, SimpleRenderer) => {
   // create a PopupTemplate for the wind data layer using fieldInfos.
   const windPopupTemplate = {
