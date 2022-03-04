@@ -7,8 +7,9 @@ require([
   "esri/Map",
   "esri/views/MapView",
   "esri/layers/CSVLayer",
-  "esri/widgets/Legend"
-], (Map, MapView, CSVLayer, Legend) => {
+  "esri/widgets/Legend",
+    "esri/renderers/SimpleRenderer"
+], (Map, MapView, CSVLayer, Legend, SimpleRenderer) => {
   // create a PopupTemplate for the wind data layer using fieldInfos.
   const windPopupTemplate = {
     title: "Station: {station_id}",
