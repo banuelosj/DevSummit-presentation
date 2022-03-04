@@ -60,7 +60,7 @@ require([
       ymax: 5214430.898644948,
       spatialReference: { wkid: 102100 },
     },
-    map: map,
+    map: map
   });
 
   // Create the Legend
