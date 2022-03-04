@@ -11,11 +11,6 @@ require([
   "esri/smartMapping/renderers/type",
   "esri/layers/support/FeatureEffect"
 ], (Map, MapView, WFSLayer, Legend, typeRendererCreator, FeatureEffect) => {
-  // Assign the expression to the `valueExpression` property and
-  // set up the unique value infos based on the decode values
-  // you set up in the expression.
-  const droughtArcade = document.getElementById("drought-renderer").text;
-
   // create a PopupTemplate and configure an aracade expression
   const droughtPopupTemplate = {
     title: "Drought Outlook (Feb - May 2022)",
@@ -29,14 +24,19 @@ require([
     ]
   };
 
+  // Assign the expression to the `valueExpression` property and
+  // set up the unique value infos based on the decode values
+  // you set up in the expression.
+  const droughtArcade = document.getElementById("drought-renderer").text;
+
   // initialize a WFSLayer
   const droughtWFSLayer = new WFSLayer({
     url: "https://idpgis.ncep.noaa.gov/arcgis/services/NWS_Climate_Outlooks/cpc_drought_outlk/MapServer/WFSServer",
     name: "Seasonal_Drought_Outlook",
     title: "US Seasonal Drought Outlook (Feb - May 2022)",
     copyright: "NOAA/NWS/NCEP/Climate Prediction Center",
-    popupTemplate: droughtPopupTemplate,
-    outFields: ['*']
+    outFields: ['*'],
+    popupTemplate: droughtPopupTemplate
   });
 
   // add the WFSLayer to the map

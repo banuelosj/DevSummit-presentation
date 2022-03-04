@@ -6,10 +6,10 @@ body,
   height: 100%;
   width: 100%;
 }
+.esri-legend .esri-legend__layer-caption {
+  display: none;
+}
 .popupSpan {
   color: #0079C1;
   font-weight: bold;
-}
-.esri-legend .esri-legend__layer-caption {
-  display: none;
 }

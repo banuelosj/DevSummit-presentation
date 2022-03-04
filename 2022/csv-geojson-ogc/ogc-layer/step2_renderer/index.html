@@ -1,0 +1,49 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="initial-scale=1,maximum-scale=1,user-scalable=no"
+    />
+    <title>
+      OGC - Step 2: Add Renderer
+    </title>
+
+    <link
+      rel="stylesheet"
+      href="https://js.arcgis.com/next/esri/themes/light/main.css"
+    />
+    <link rel="stylesheet" href="css/main.css" />
+
+    <script src="https://js.arcgis.com/next/"></script>
+
+    <script type="text/plain" id="drought-renderer">
+      // Write the expression and reference the value
+      // of each field with a meaningful variable name within
+      // the expression. Then calculate the max number with
+      // the Max() function and use Decode() to return a string
+      // value representing the party whose field value matches
+      // the max value.
+
+      var persist = $feature.fid_persis;
+      var improves = $feature.fid_improv;
+      var removal = $feature.fid_remove;
+      var development = $feature.fid_dev;
+      var droughtValues = [persist, improves, removal, development];
+
+      // Decode() and Max() are built-in Arcade functions
+      return Decode( Max(droughtValues),
+        persist, 'Drought Persists',
+        improves, 'Drought Could Improve',
+        removal, 'Drought Could End',
+        development, 'Drought Could Develop',
+        'n/a');
+    </script>
+    
+    <script src="js/main.js"></script>
+  </head>
+
+  <body>
+    <div id="viewDiv"></div>
+  </body>
+</html>
