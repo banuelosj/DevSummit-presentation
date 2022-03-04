@@ -1,5 +1,5 @@
 /**
- * Step 2: Add a PopupTemplate.
+ * Step 3: Add a PopupTemplate.
  * This sample demonstrates how to configure a PopupTemplate for a WFSLayer.
  * This app uses an arcade expression to check 4 different fields, and if either of
  * those fields have a value of 1, then the popup content will change accordingly.

@@ -1,11 +1,16 @@
+/**
+ * Step 2: Add a Renderer.
+ * This sample demonstrates how to add renderers to the CSVLayers. These
+ * renderers will also contain visual variable to help visualize the data in a way
+ * that is easier to understand.
+ */
 require([
   "esri/Map",
   "esri/views/MapView",
   "esri/layers/CSVLayer",
-  "esri/renderers/SimpleRenderer",
   "esri/widgets/Legend",
-  // "esri/widgets/TimeSlider"
-], (Map, MapView, CSVLayer, SimpleRenderer, Legend, TimeSlider) => {
+  "esri/renderers/SimpleRenderer"
+], (Map, MapView, CSVLayer, Legend, SimpleRenderer) => {
   // create a wind data SimpleRenderer with rotation and size visual variables.
   const windRenderer = new SimpleRenderer({
     symbol: {
@@ -68,67 +73,12 @@ require([
     ]
   });
 
-  // create a PopupTemplate for the wind data layer using fieldInfos.
-  const windPopupTemplate = {
-    title: "Station: {station_id}",
-    content: [
-      {
-        type: "fields",
-        fieldInfos: [
-          {
-            fieldName: "observation_time",
-            label: "Obseration time"
-          },
-          {
-            fieldName: "wind_speed_kt",
-            label: "Wind speed (kt)"
-          },
-          {
-            fieldName: "wind_dir_degrees",
-            label: "Wind direction (degrees)"
-          },
-          {
-            fieldName: "altim_in_hg",
-            label: "Altimeter (inHg)",
-            format: { // round up to 0 decimal places
-              digitSeparator: true,
-              places: 0
-            }
-          },
-          {
-            fieldName: "wind_gust_kt",
-            label: "Wind gust (kt)"
-          }
-        ]
-      }
-    ]
-  };
-
-  // create a PopupTemplate for the fire data layer with a custom arcade expression.
-  const firePopupTemplate = {
-    title: "{IncidentName}",
-    content: `
-      This fire incident in <b>{POOCounty}</b> county, <b>{POOState}</b>, was discovered on <span class="popupSpan">{FireDiscoveryDateTime}</span>.
-      <br>{expression/acres-expression}
-      <p>Cause of fire: <b><i>{FireCause}</i></b>.</p>
-    `,
-    expressionInfos: [
-      {
-        // If there is an acre count, display the number within a sentence. Otherwise display nothing.
-        name: "acres-expression",
-        expression: "IIF($feature.DailyAcres > 0, 'This fire is reported to affect ' + $feature.DailyAcres + ' acres daily.', '')"
-      }
-    ]
-  }
-
   // initialize a CSVLayer
   const windCSVLayer = new CSVLayer({
     title: "Wind Station Data",
-    url: "https://jbanuelos1.esri.com/data/csv/wind_data_2_18_full.csv",
+    url: "https://banuelosj.github.io/DevSummit-presentation/2022/csv-geojson-ogc/data/wind_data_2_18_full.csv",
     copyright: "NOAA",
-    popupTemplate: windPopupTemplate,
-    renderer: windRenderer,
-    // *** add timeInfo
+    renderer: windRenderer
   });
 
   // date variables for the fire data definition expression
@@ -140,10 +90,9 @@ require([
   // display data from 2/18/2022 which is the date interval for the wind data layer
   const fireCSVLayer = new CSVLayer({
     title: "Wildland Fire Locations",
-    url: "https://jbanuelos1.esri.com/data/csv/WFIGS_2022_Wildland_Fire_Locations.csv",
+    url: "https://banuelosj.github.io/DevSummit-presentation/2022/csv-geojson-ogc/data/WFIGS_2022_Wildland_Fire_Locations.csv",
     copyright: "WFIGS",
     definitionExpression: `${dateField} > DATE '${startTime}' AND ${dateField} < DATE '${endTime}'`,
-    popupTemplate: firePopupTemplate,
     renderer: fireRenderer
   });
 
@@ -167,14 +116,12 @@ require([
     }
   });
 
-  // initialize the Legend widget
+  // add the Legend widget
   const legend = new Legend({
     view: view
   });
 
   // add the Legend to the view
   view.ui.add(legend, "top-right");
-
-// *** add TimeSlider widget
     
 });
