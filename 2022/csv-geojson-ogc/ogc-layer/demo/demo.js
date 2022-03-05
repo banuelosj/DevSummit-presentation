@@ -10,7 +10,7 @@ require([
   // initialize a WFSLayer
   const droughtWFSLayer = new WFSLayer({
     url: "https://idpgis.ncep.noaa.gov/arcgis/services/NWS_Climate_Outlooks/cpc_drought_outlk/MapServer/WFSServer",
-    title: "US Seasonal Drought Outlook (Feb - May 2022)",
+    title: "US Seasonal Drought Forecast (Feb - May 2022)",
     copyright: "NOAA/NWS/NCEP/Climate Prediction Center",
     outFields: ['*'],
     // *** add renderer
