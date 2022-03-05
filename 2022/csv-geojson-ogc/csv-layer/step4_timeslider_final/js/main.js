@@ -186,11 +186,7 @@ require([
   const timeSlider = new TimeSlider({
     container: "timeSlider",
     view: view,
-    timeVisible: true, // show the time stamps on the timeslider
-    fullTimeExtent: {
-      start: new Date("2022-02-18T14:30:00Z"),
-      end: new Date("2022-02-19T00:35:00Z")
-    }
+    timeVisible: true // show the time stamps on the timeslider
   });
 
   // set the TimeSlider widget time extent and stops

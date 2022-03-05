@@ -137,7 +137,7 @@ require([
   // date variables for the fire data definition expression
   const startTime = "2022-02-18";
   const endTime = "2022-02-19";
-  const dateField = "FireDiscoveryDateTime";
+  const dateField = "ModifiedOnDateTime_dt";
 
   // initialize a CSVLayer with a definition expression set to only
   // display data from 2/18/2022 which is the date interval for the wind data layer
