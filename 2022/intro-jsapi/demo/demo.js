@@ -1,17 +1,87 @@
-/**
- * Step 4: Add a popup
- */
 require([
   "esri/Map",
   "esri/views/MapView",
   "esri/layers/CSVLayer",
   "esri/widgets/Legend",
-  "esri/geometry/geometryEngine",
-  "esri/Graphic",
-  "esri/widgets/Slider",
-  "esri/layers/support/LabelClass"
-], function (Map, MapView, CSVLayer, Legend, geometryEngine, Graphic, Slider, LabelClass) {
+  // "esri/layers/support/LabelClass",
+  // "esri/renderers/SimpleRenderer",
+  // "esri/geometry/geometryEngine",
+  // "esri/Graphic",
+  // "esri/widgets/Slider"
+], function (Map, MapView, CSVLayer, Legend, LabelClass, SimpleRenderer, geometryEngine, Graphic, Slider) {
 
+  // initialize the CSVLayer
+  const csvLayer = new CSVLayer({
+    url: "https://banuelosj.github.io/DevSummit-presentation/2022/intro-jsapi/data/horror_film_locations.csv",
+    title: "Horror film locations",
+  });
+
+  // initialize the Map
+  const map = new Map({
+    basemap: "gray-vector",
+    // *** add layer to the map
+  });
+
+  // initialize the 2D MapView
+  const view = new MapView({
+    container: "viewDiv",
+    map: map,
+    center: [-90, 34],
+    zoom: 4
+  });
+
+  // initialize the legend
+  // const legend = new Legend({
+  //   view: view
+  // });
+  // // add the legend to the view
+  // view.ui.add(legend, "top-left");
+
+  // initialize the LabelClass
+  //labelingInfo: [labelClass]
+  const labelClass = new LabelClass({
+    labelExpressionInfo: { expression: "$feature.movie" },
+    symbol: {
+      type: "text",  // autocasts as new TextSymbol()
+      color: "#00A0FF",
+      font: {
+        // autocast as new Font()
+        family: "Playfair Display",
+        size: 12,
+        weight: "bold"
+      }
+    },
+    labelPlacement: "above-center",
+  });
+
+  // initialize the simple renderer
+  const simpleRenderer = new SimpleRenderer({
+    type: "simple",
+    symbol: {
+      type: "picture-marker",
+      url: "https://banuelosj.github.io/DevSummit-presentation/2022/intro-jsapi/data/cobweb.png",
+      width: "64px",
+      height: "64px"
+    },
+    visualVariables: [
+      {
+        type: "size",
+        field: "rating",
+        stops: [
+          { value: 4, size: 50, label: "> 4 stars"},
+          { value: 3, size: 40, label:"3 stars"},
+          { value: 2, size: 30, label:"2 stars"},
+          { value: 1, size: 20, label:"< 1 stars"}
+        ],
+        legendOptions: {
+          title: "Movie rating"
+        }
+      }
+    ]
+  });
+
+  // initialize the popupTemplate
+  // this autocasts to new PopupTemplate()
   const popupTemplate = {
     title: "{movie}",
     content: [
@@ -33,84 +103,23 @@ require([
         ]
       }
     ]
-  }
+  };
 
-  const simpleRenderer = {
-    type: "simple",
-    symbol: {
-      type: "picture-marker",
-      url: "https://jbanuelos1.esri.com/images/cobweb.png",
-      width: "64px",
-      height: "64px"
-    },
-    visualVariables: [
-      {
-        type: "size",
-        field: "rating",
-        stops: [
-          { value: 4, size: 50, label: "> 4 stars"},
-          { value: 3, size: 40, label:"3 stars"},
-          { value: 2, size: 30, label:"2 stars"},
-          { value: 1, size: 20, label:"< 1 stars"}
-        ],
-        legendOptions: {
-          title: "Movie rating"
-        }
-      }
-    ]
-  }
-
-  const labelClass = new LabelClass({
-    labelExpressionInfo: { expression: "$feature.movie" },
-    symbol: {
-      type: "text",  // autocasts as new TextSymbol()
-      color: "#00A0FF",
-      font: {
-        // autocast as new Font()
-        family: "Playfair Display",
-        size: 12,
-        weight: "bold"
-      }
-    },
-    labelPlacement: "above-center",
-  });
-
-  const csvLayer = new CSVLayer({
-    url: "https://jbanuelos1.esri.com/data/csv/horror_film_locations_new.csv",
-    renderer: simpleRenderer,
-    popupTemplate: popupTemplate,
-    labelingInfo: [labelClass],
-    popupEnabled: false
-  });
-
-  const map = new Map({
-    basemap: "gray-vector",
-    layers: [csvLayer]
-  });
-
-  const view = new MapView({
-    container: "viewDiv",
-    map: map,
-    center: [-90, 34],
-    zoom: 4
-  });
-
-  const legend = new Legend({
-    view: view
-  });
-
-  view.ui.add(legend, "top-left");
-
+  // steps to generate the geometryEngine buffer
   let DISTANCE = 20;
   let csvLayerView;
   let highlight;
 
+  // access the layerView of the CSVLayer
+  // we want to query the features and highlight features
+  // in the client-side
   view.whenLayerView(csvLayer).then(layerView => {
     csvLayerView = layerView;
   });
 
+  // adding a view click event
   view.on("click", (event) => {
-    clearCards();
+    clearCards();  // clears existing calcite-cards
     addPoint(event.mapPoint);
   });
 
@@ -142,7 +151,7 @@ require([
 
   // generate the buffer
   function createBuffer(point) {
-    // obtain the buffer polygon
+    // returns a the buffer polygon
     const bufferPolygon = geometryEngine.geodesicBuffer(point, DISTANCE, "miles");
     
     // create a graphic from the buffer polygon
@@ -167,17 +176,17 @@ require([
     view.goTo({ target: bufferPolygon });
   };
 
-  // query and highlight the features that fall withing the buffer
-  // radius
+  // query and highlight the features that fall withing the buffer radius
   function selectFeaturesInRadius(polygon) {
     const query = csvLayerView.createQuery();
     query.geometry = polygon;
     
-    // client-side queries
+    // client-side query using the layerView
     csvLayerView.queryFeatures(query).then((result) => {
       if(highlight) {
         highlight.remove()
       }
+      // highlight the features and add the cards to the panel
       if(!!result.features.length) {
         highlightResults(result.features);
         populatePanel(result.features);
@@ -195,6 +204,8 @@ require([
     highlight = csvLayerView.highlight(objectIDs);
   };
 
+
+  // *** Calcite Design System components ***
   const panel = document.getElementById("panel");
 
   function populatePanel(features) {
@@ -227,6 +238,7 @@ require([
     });
   };
 
+  // remove the cards from the panel
   function clearCards() {
     const children = panel.querySelectorAll('*');
     children.forEach((child) => {
@@ -237,6 +249,7 @@ require([
     //console.log(children);
   }
 
+  // add the Slider widget that controls the radius of the buffer
   const radiusSlider = new Slider({
     container: "radiusSlider",
     min: 1,
@@ -249,7 +262,8 @@ require([
     }
   });
 
-  // listen to change and input events on UI components
+  // listen to change in the slider thumb and update the 
+  // radius accordingly
   radiusSlider.on("thumb-drag", updateRadius);
 
   function updateRadius(event) {

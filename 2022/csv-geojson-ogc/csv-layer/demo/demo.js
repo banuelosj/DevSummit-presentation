@@ -12,11 +12,6 @@ require([
     title: "Wind Station Data",
     url: "https://banuelosj.github.io/DevSummit-presentation/2022/csv-geojson-ogc/data/wind_data_2_18_full.csv",
     copyright: "NOAA",
-    // *** add renderer
-    // ** add popupTemplate
-    // timeInfo: {
-    //   startField: "observation_time"  // the field that determines the time extent of the layer
-    // }
   });
 
   // date variables for the fire data definition expression
@@ -31,10 +26,7 @@ require([
     url: "https://banuelosj.github.io/DevSummit-presentation/2022/csv-geojson-ogc/data/WFIGS_2022_Wildland_Fire_Locations.csv",
     copyright: "WFIGS",
     definitionExpression: `${dateField} > DATE '${startTime}' AND ${dateField} < DATE '${endTime}'`,
-    // *** add renderer
-    // ** add popupTemplate
   });
-
 
   // initialize the Map
   const map = new Map({
@@ -180,6 +172,10 @@ require([
   }
 
   // initialize the TimeSlider widget
+  // timeInfo: {
+  //   startField: "observation_time"  // the field that determines the time extent of the layer
+  // }
+
   // const timeSlider = new TimeSlider({
   //   container: "timeSlider",
   //   view: view,
