@@ -91,7 +91,7 @@ require([
         minSize: 8,  // the min size of the symbol
         maxSize: 40,  // the max size of the symbol
         legendOptions: {
-          title: "Wind Speed (kts)"  // override legend title for this layer
+          title: "Wind speed (kts)"  // override legend title for this layer
         }
       }
     ]
@@ -120,7 +120,7 @@ require([
           { value: 265, size: 32, label: "> 265 acres" }
         ],
         legendOptions: {
-          title: "Daily Acres burned (acres)"  // override legend title for this layer
+          title: "Daily acres burned"  // override legend title for this layer
         }
       }
     ]
