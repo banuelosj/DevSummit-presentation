@@ -39,7 +39,6 @@ require([
   }
 
   const simpleRenderer = new SimpleRenderer({
-    type: "simple",
     symbol: {
       type: "picture-marker",
       url: "https://banuelosj.github.io/DevSummit-presentation/2022/intro-jsapi/data/cobweb.png",

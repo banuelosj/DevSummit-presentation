@@ -13,7 +13,6 @@ require([
 ], function (Map, MapView, CSVLayer, Legend, LabelClass, SimpleRenderer) {
   // create an instance of a simple renderer
   const simpleRenderer = new SimpleRenderer({
-    type: "simple",
     symbol: {
       type: "picture-marker",
       url: "https://banuelosj.github.io/DevSummit-presentation/2022/intro-jsapi/data/cobweb.png",
