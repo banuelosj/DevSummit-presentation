@@ -7,7 +7,7 @@ Presenters: Heather Gonzago, Jose Banuelos
 ## Presentation
 ![image](https://user-images.githubusercontent.com/36280386/156934207-27cbce0a-2004-4e23-b041-bbe25f79d239.png)
 
-Slides -- > 
+[Download Slides](https://github.com/banuelosj/DevSummit-presentation/blob/main/2022/intro-jsapi/getting_started_with_web_dev.pptx?raw=true)
 
 # Demo Live Links:
 
