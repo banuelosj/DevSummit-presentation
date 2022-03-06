@@ -1,3 +1,14 @@
+## Getting Started with Web Development and the ArcGIS API for JavaScript
+
+Length: 30 min
+
+Presenters: Heather Gonzago, Jose Banuelos
+
+## Presentation
+![image](https://user-images.githubusercontent.com/36280386/156934207-27cbce0a-2004-4e23-b041-bbe25f79d239.png)
+
+Slides -- > 
+
 # Demo Live Links:
 
 Step 1: [Adding a Map](https://banuelosj.github.io/DevSummit-presentation/2022/intro-jsapi/step1_map/)
