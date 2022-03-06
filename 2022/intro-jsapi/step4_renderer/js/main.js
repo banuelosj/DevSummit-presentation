@@ -24,9 +24,9 @@ require([
         type: "size",
         field: "rating",
         stops: [
-          { value: 9, size: 50, label: "> 9 stars"},
-           { value: 6, size: 40, label:"6 stars"},
-          { value: 3, size: 30, label:"3 stars"},
+          { value: 4, size: 50, label: "> 4 stars"},
+          { value: 3, size: 40, label:"3 stars"},
+          { value: 2, size: 30, label:"2 stars"},
           { value: 1, size: 20, label:"< 1 stars"}
         ],
         legendOptions: {

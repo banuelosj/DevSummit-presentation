@@ -1,16 +1,61 @@
 require([
   "esri/Map",
   "esri/views/MapView",
-  "esri/layers/CSVLayer",
-  "esri/widgets/Legend",
-  "esri/layers/support/LabelClass",
-  "esri/renderers/SimpleRenderer",
+  // "esri/layers/CSVLayer",
+  // "esri/widgets/Legend",
+  // "esri/layers/support/LabelClass",
+  // "esri/renderers/SimpleRenderer",
   // "esri/geometry/geometryEngine",
   // "esri/Graphic",
   // "esri/widgets/Slider"
 ], function (Map, MapView, CSVLayer, Legend, LabelClass, SimpleRenderer, geometryEngine, Graphic, Slider) {
 
-    // initialize the simple renderer
+  // initialize the Map
+  const map = new Map({
+    basemap: "gray-vector",
+    // *** add layer to the map
+  });
+
+  // initialize the 2D MapView
+  const view = new MapView({
+    container: "viewDiv",
+    map: map,
+    center: [-90, 34],
+    zoom: 4
+  });
+
+  
+  // initialize the CSVLayer
+  const csvLayer = new CSVLayer({
+    url: "https://banuelosj.github.io/DevSummit-presentation/2022/intro-jsapi/data/horror_film_locations.csv",
+    title: "Horror film locations",
+  });
+
+  // initialize the legend
+  // const legend = new Legend({
+  //   view: view
+  // });
+  // // add the legend to the view
+  // view.ui.add(legend, "top-left");
+
+  // initialize the LabelClass
+  //labelingInfo: [labelClass]
+  const labelClass = new LabelClass({
+    labelExpressionInfo: { expression: "$feature.movie" },
+    symbol: {
+      type: "text",  // autocasts as new TextSymbol()
+      color: "#00A0FF",
+      font: {
+        // autocast as new Font()
+        family: "Playfair Display",
+        size: 12,
+        weight: "bold"
+      }
+    },
+    labelPlacement: "above-center",
+  });
+
+  // initialize the simple renderer
   const simpleRenderer = new SimpleRenderer({
     symbol: {
       type: "picture-marker",
@@ -34,53 +79,6 @@ require([
       }
     ]
   });
-
-  const labelClass = new LabelClass({
-    labelExpressionInfo: { expression: "$feature.movie" },
-    symbol: {
-      type: "text",  // autocasts as new TextSymbol()
-      color: "#00A0FF",
-      font: {
-        // autocast as new Font()
-        family: "Playfair Display",
-        size: 12,
-        weight: "bold"
-      }
-    },
-    labelPlacement: "above-center",
-  });
-
-  // initialize the CSVLayer
-  const csvLayer = new CSVLayer({
-    url: "https://banuelosj.github.io/DevSummit-presentation/2022/intro-jsapi/data/horror_film_locations.csv",
-    title: "Horror film locations",
-    labelingInfo: [labelClass],
-    renderer: simpleRenderer
-  });
-
-  // initialize the Map
-  const map = new Map({
-    basemap: "gray-vector",
-    layers: [csvLayer]
-  });
-
-  // initialize the 2D MapView
-  const view = new MapView({
-    container: "viewDiv",
-    map: map,
-    center: [-90, 34],
-    zoom: 4
-  });
-
-  // initialize the legend
-  const legend = new Legend({
-    view: view
-  });
-  // add the legend to the view
-  view.ui.add(legend, "top-left");
-
-  // initialize the LabelClass
-  //labelingInfo: [labelClass]
 
   // initialize the popupTemplate
   // this autocasts to new PopupTemplate()
