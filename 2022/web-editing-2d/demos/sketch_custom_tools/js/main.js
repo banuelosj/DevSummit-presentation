@@ -23,7 +23,16 @@ require([
 
   // Used to illustrate snapping options
   const pdxBikePathsFL = new FeatureLayer({
-    url: "https://servicesqa.arcgis.com/SdQnSRS214Ul5Jv5/ArcGIS/rest/services/FL__3857__US_Portland__BikePaths/FeatureServer/0"
+    url: "https://servicesqa.arcgis.com/SdQnSRS214Ul5Jv5/ArcGIS/rest/services/FL__3857__US_Portland__BikePaths/FeatureServer/0",
+    renderer: {
+      type: "simple",
+      symbol: {
+        type: "simple-line",
+        style: "solid",
+        color: [112,132,62,255],
+        width: 2.5
+      } 
+    }
   });
   
   const map = new Map({
@@ -40,6 +49,9 @@ require([
       ymax: 5707087.317567461,
       ymin: 5703265.466153101,
       spatialReference: 102100
+    },
+    highlightOptions: {
+      haloOpacity: 0
     }
   });
 
@@ -62,7 +74,7 @@ require([
     document.getElementById("draw-container").classList.remove("hidden");
 
     sketch = new Sketch({
-      graphicsLayer,
+      layer: graphicsLayer,
       view,
       snappingOptions: {
         enabled: true,
