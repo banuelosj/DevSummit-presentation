@@ -1,0 +1,64 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>Sketch: Custom Tools (DS2022)</title>
+
+    <link rel="stylesheet" href="https://js.arcgis.com/next/esri/themes/light/main.css" />
+    <link rel="stylesheet" href="css/main.css">
+    
+    <script src="https://js.arcgis.com/next/"></script>
+    <script src="js/main.js"></script>
+  </head>
+
+  <body>
+    <div id="viewDiv">
+      <div id="draw-container" class="hidden">
+        <div id="sketch"></div>
+        <div class="esri-widget">
+          <div id="generalButtonContainer" class="button-container">
+            <div class="esri-sketch__section esri-sketch__tool-section">
+              <button class="esri-sketch__button action-button esri-icon-zoom-in-magnifying-glass" id="magnifyBtn"
+                type="button" title="Magnify"></button>
+              <button class="esri-sketch__button action-button esri-icon-edit" id="cutBtn" type="button"
+                title="Cut geometries"></button>
+            </div>
+          </div>
+          <div id="createButtonContainer" class="button-container hidden">
+            <div class="esri-sketch__section esri-sketch__tool-section">
+              <div class="esri-sketch__section esri-sketch__tool-section">
+                <label id="drawModeLabel" for="drawModeSelect">Draw Mode:</label>
+                <select id="drawModeSelect">
+                  <option value="hybrid">Hybrid</option>
+                  <option value="freehand">Freehand</option>
+                  <option value="click" selected>Click</option>
+                </select>
+              </div>
+            </div>
+            <div class="esri-sketch__section esri-sketch__tool-section">
+              <label id="creationModeLabel" for="creationModeSelect">Workflow Mode:</label>
+              <select id="creationModeSelect">
+                <option value="single">Single</option>
+                <option value="update">Update</option>
+                <option value="continuous" selected>Continuous</option>
+              </select>
+            </div>
+          </div>
+          <div id="updateButtonContainer" class="button-container hidden">
+            <div class="esri-sketch__section esri-sketch__tool-section">
+              <button class="esri-sketch__button action-button esri-icon-duplicate" id="copyBtn" type="button"
+                title="Copy geometries"></button>
+              <button class="esri-sketch__button action-button esri-icon-link hidden" id="unionBtn" type="button"
+                title="Merge geometries"></button>
+            </div>
+            <div class="esri-sketch__section esri-sketch__tool-section">
+              <button class="esri-sketch__button action-button esri-icon-rotate" id="rotateBtn" type="button"
+                title="Rotate geometries"></button>
+              <input type="number" max="360" min="-360" value="45" id="rotateInput" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>  
+</html>

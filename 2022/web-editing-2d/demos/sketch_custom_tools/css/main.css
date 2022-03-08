@@ -1,0 +1,51 @@
+html,
+body,
+#viewDiv {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  width: 100%;
+  font-family: verdana;
+}
+
+#draw-container {
+  background: #fff;
+  border: 1px solid #d3d3d3;
+}
+
+.button-container:first-child {
+  border-right: 1px solid #d3d3d3;
+}
+
+.button-container {
+  display: flex;
+  height: 100%;
+}
+
+.action-button {
+  background-color: transparent;
+  border: none;
+  color: #6e6e6e;
+  font-size: 16px;
+  height: 32px;
+  text-align: center;
+  width: 32px;
+}
+
+.action-button:hover,
+.action-button:focus {
+  background: rgb(234, 234, 234);
+}
+
+.action-button--selected {
+  background: rgb(234, 234, 234, 0.8);
+}
+
+.button-container label {
+  margin: 0 auto;
+  padding: 4px;
+}
+
+.hidden {
+  display: none !important;
+}
