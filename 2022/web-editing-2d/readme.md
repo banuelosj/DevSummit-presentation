@@ -12,3 +12,5 @@ Presenters: Heather Gonzago, Jose Banuelos
 # Demo Live Links:
 
 [Sketch: Custom Tools](https://banuelosj.github.io/DevSummit-presentation/2022/web-editing-2d/demos/sketch_custom_tools)
+
+[Sketch: Selection & Highlight](https://banuelosj.github.io/DevSummit-presentation/2022/web-editing-2d/demos/sketch-selection-highlight)
