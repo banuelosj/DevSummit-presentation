@@ -35,7 +35,7 @@ require([
   });
 
   const map = new Map({
-    basemap: "topo-vector",
+    basemap: "gray-vector",
     layers: [csvLayer]
   });
 

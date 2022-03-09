@@ -113,15 +113,15 @@ require([
   // access the layerView of the CSVLayer
   // we want to query the features and highlight features
   // in the client-side
-  view.whenLayerView(csvLayer).then(layerView => {
-    csvLayerView = layerView;
-  });
+  // view.whenLayerView(csvLayer).then(layerView => {
+  //   csvLayerView = layerView;
+  // });
 
-  // adding a view click event
-  view.on("click", (event) => {
-    clearCards();  // clears existing calcite-cards
-    addPoint(event.mapPoint);
-  });
+  // // adding a view click event
+  // view.on("click", (event) => {
+  //   clearCards();  // clears existing calcite-cards
+  //   addPoint(event.mapPoint);
+  // });
 
   // adds a marker on the location where the view was clicked
   function addPoint(point) {
@@ -206,7 +206,24 @@ require([
 
 
   // *** Calcite Design System components ***
-  const panel = document.getElementById("panel");
+  // const panel = document.getElementById("panel");
+
+  // add the Slider widget that controls the radius of the buffer
+  // const radiusSlider = new Slider({
+  //   container: "radiusSlider",
+  //   min: 1,
+  //   max: 200,
+  //   values: [20],
+  //   steps: 1,
+  //   visibleElements: {
+  //     rangeLabels: true,
+  //     labels: true
+  //   }
+  // });
+
+  // listen to change in the slider thumb and update the 
+  // radius accordingly
+  // radiusSlider.on("thumb-drag", updateRadius);
 
   function populatePanel(features) {
     features.forEach((feature) => {
@@ -248,23 +265,6 @@ require([
     })
     //console.log(children);
   }
-
-  // add the Slider widget that controls the radius of the buffer
-  const radiusSlider = new Slider({
-    container: "radiusSlider",
-    min: 1,
-    max: 200,
-    values: [20],
-    steps: 1,
-    visibleElements: {
-      rangeLabels: true,
-      labels: true
-    }
-  });
-
-  // listen to change in the slider thumb and update the 
-  // radius accordingly
-  radiusSlider.on("thumb-drag", updateRadius);
 
   function updateRadius(event) {
     DISTANCE = event.value;

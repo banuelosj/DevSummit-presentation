@@ -10,7 +10,7 @@ require([
   
   // create an instance of the map and add the CSVLayer
   const map = new Map({
-    basemap: "topo-vector"
+    basemap: "gray-vector"
   });
 
   // create an instance of the view
