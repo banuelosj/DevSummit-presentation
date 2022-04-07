@@ -26,4 +26,4 @@ Step 6: [Generate a Buffer](https://banuelosj.github.io/DevSummit-presentation/2
 Step 7: [Adding UI with Calcite Components](https://banuelosj.github.io/DevSummit-presentation/2022/intro-jsapi/step7_calcite/)
 
 # ESM React Example
-- This sample will also be demonstrated using React and ESM. This is currently under development and should be added within a week or 2. Thanks for your patience...
+[Intro to JSAPI ES modules sample!](https://github.com/banuelosj/DevSummit-presentation/tree/main/2022/intro-jsapi/intro-jsapi-esm)
