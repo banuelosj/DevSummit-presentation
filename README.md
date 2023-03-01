@@ -1,5 +1,14 @@
 # DevSummit-presentation
 
+## 2023
+
+### ArcGIS Maps SDK for JavaScript: Web Editing
+_CoAuthored by [Jose Banuelos](https://github.com/banuelosj), [Heather Gonzago](https://github.com/hgonzago), and [Tristan Morrison]
+
+![Web Editing Title Slide](2022/images/DataFromAnywhere.png)
+
+Discover the next-generation web editing experience using the ArcGIS Maps SDK for JavaScript. You will learn how to enable and customize the API's editing components as well as create custom web mapping applications for very simple geometry and attribute editing all the way to advanced editing. We’ll cover techniques for building user-friendly experiences that includes feature to feature snapping for data integrity, smart forms for forms-based editing, and advanced editing capabilities.
+
 ## 2022
 
 ### ArcGIS API for JavaScript: Building Web Apps Using Data from Anywhere
