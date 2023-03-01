@@ -1,0 +1,38 @@
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+  <title>Editor replaces SmartEditor</title>
+
+  <script type="module" src="https://js.arcgis.com/calcite-components/1.0.7/calcite.esm.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://js.arcgis.com/calcite-components/1.0.7/calcite.css" />
+
+  <link rel="stylesheet" href="https://js.arcgis.com/4.26/esri/themes/light/main.css" />
+  <link rel="stylesheet" href="css/main.css" />
+
+  <script src="https://js.arcgis.com/4.26/"></script>
+  <script src="js/main.js"></script>
+
+</head>
+
+<body>
+  <div id="viewDiv"></div>
+  <calcite-panel id="layerInfoPanel" heading="Configure layer settings">
+    <div>
+      <table id="layerInfoTable">
+        <tr>
+          <th>Layer</th>
+          <th>Editable</th>
+          <th>Allow Adds</th>
+          <th>Allow Updates</th>
+          <th>Allow Delete</th>
+          <th>Disable Geometry Editing</th>
+          <th>Disable Attribute Editing</th>
+        </tr>
+      </table>
+    </div>
+  </calcite-panel>
+</body>
+
+</html>
