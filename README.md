@@ -2,6 +2,13 @@
 
 ## 2023
 
+### ArcGIS Maps SDK for JavaScript: Tips and Tricks for Developing and Debugging Apps
+_CoAuthored by [Emily Hu](https://github.com/yxeHu) & [Jose Banuelos](https://github.com/banuelosj)_
+
+![Debugging Tips and Tricks Title Slide](2023/images/debugging-slide.png)
+
+Learn how to quickly and easily find and fix problems in your web mapping applications. You will learn how to setup your dev environment to use plug-ins like linters and beautifiers to write cleaner code. We'll show you how to use the power of browser-based debugging tools to debug, style, and optimize your apps. We will also cover how to resolve common issues you may run into when working with the ArcGIS Maps SDK for JavaScript.
+
 ### ArcGIS Maps SDK for JavaScript: Web Editing
 _CoAuthored by [Jose Banuelos](https://github.com/banuelosj), [Heather Gonzago](https://github.com/hgonzago), and Tristan Morrison_
 
