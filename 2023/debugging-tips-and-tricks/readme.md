@@ -7,9 +7,10 @@ Presenters: Emily Hu, Jose Banuelos
 ## Presentation
 ![Debugging Tips and Tricks Slide](../images/debugging-slide.png)
 
-[Download Slides](https://github.com/banuelosj/DevSummit-presentation/blob/main/2022/web-editing-2d/slides/ds2022-arcgis-api-for-javascript-web-editing-2d.pptx?raw=true)
+[Download Slides](https://github.com/banuelosj/DevSummit-presentation/blob/main/2023/debugging-tips-and-tricks/slides/Debugging_Tips_and_Tricks.pdf?raw=true)
 
 # Demo Live Links:
 
-[Editor: LayerInfo C.R.U.D Improvements](https://banuelosj.github.io/DevSummit-presentation/2023/web-editing/demos/editor-layerinfo-demo)
+- [Breakpoints: FeatureTable Edits](https://banuelosj.github.io/DevSummit-presentation/2023/debugging-tips-and-tricks/demos/feature-table-edits)
+- [Developer Tools as IDE: Sketch Symbology override](https://banuelosj.github.io/DevSummit-presentation/2023/debugging-tips-and-tricks/demos/sketch-geometries-custom)
 
