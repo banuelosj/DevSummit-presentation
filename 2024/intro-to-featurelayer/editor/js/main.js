@@ -96,7 +96,8 @@ require([
   
   // create an instance of the map and add the CSVLayer
   const map = new Map({
-    basemap: "gray-vector",
+    basemap: "gray-3d",
+    //basemap: "gray-vector",
     layers: [featureLayer, landscape_inspection_table]
   });
 
