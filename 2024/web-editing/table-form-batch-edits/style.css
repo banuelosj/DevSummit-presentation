@@ -1,0 +1,50 @@
+/* Calcite Dev Summit 2024 Demo Template */
+/* Demo template supporting styles */
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  width: 100%;
+}
+
+calcite-menu-item {
+  --calcite-color-foreground-1: var(--calcite-color-background);
+}
+
+calcite-navigation-logo {
+  --calcite-ui-icon-color: var(--calcite-color-brand);
+}
+
+calcite-shell-panel[slot="panel-start"] calcite-panel {
+  border-top: 0;
+}
+
+calcite-action-pad {
+  margin-inline-end: 0.5rem;
+}
+
+esri-demo-code {
+  margin: 15px 0;
+  font-size: 18px;
+  line-height: 24px;
+  border: 1px solid var(--calcite-color-border-2);
+  padding: 15px;
+}
+
+/* Calcite Dev Summit 2024 Demo Template */
+/* App-specific supporting styles below */
+
+
+calcite-panel {
+  border-block-start: 0;
+}
+
+calcite-shell {
+  background-color: var(--calcite-color-background);
+}
+
+calcite-label:last-of-type {
+  --calcite-label-margin-bottom: 0;
+}

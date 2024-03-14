@@ -1,0 +1,54 @@
+html,
+body,
+.table-container {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  width: 100%;
+}
+
+#viewDiv {
+  height: 100%;
+  width: 100%;
+}
+
+.esri-feature-table .esri-grid__grid {
+  border: none;
+}
+
+.grid-container {
+  margin: 2rem;
+  height: 100%;
+  max-height: calc(100% - 64px);
+  display: grid;
+  grid-auto-columns: 1fr;
+  grid-template-columns: minmax(18rem, 0.5fr) 1fr 1fr;
+  gap: 2rem 2rem;
+  grid-template-areas: "panel-main panel-main panel-info";
+}
+
+#panel-table,
+#panel-map {
+  grid-area: panel-main;
+}
+
+.panel-info {
+  grid-area: panel-info;
+}
+
+.grid-container calcite-panel {
+  box-shadow: var(--calcite-shadow-sm);
+}
+
+@media screen and (max-width: 800px) {
+  .grid-container {
+    grid-template-columns: 1fr;
+    grid-template-areas: "panel-main" "panel-info";
+  }
+
+  .panel-main,
+  .panel-info {
+    height: 40vh;
+  }
+}
+
