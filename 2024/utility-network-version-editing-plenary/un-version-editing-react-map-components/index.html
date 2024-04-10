@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="data:;base64,=" />
+    <title>Map components React template</title>
+    <style>
+      html,
+      body {
+        padding: 0;
+        margin: 0;
+        width: 100vw;
+        height: 100vh;
+      }
+
+      #root,
+      arcgis-map {
+        padding: 0;
+        margin: 0;
+        height: 100%;
+        width: 100%;
+      }
+
+      /* calcite-menu-item {
+        --calcite-color-foreground-1: var(--calcite-color-background);
+      } */
+
+      calcite-panel {
+        border-top: 0;
+        height: 100%;
+      }
+
+      calcite-action-pad {
+        margin-inline-end: 0.5rem;
+      }
+
+      calcite-shell {
+        background-color: var(--calcite-color-background);
+      }
+
+      calcite-label:last-of-type {
+        --calcite-label-margin-bottom: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="./src/index.jsx"></script>
+  </body>
+</html>
