@@ -37,7 +37,7 @@ This application REQUIRES that you plug in your own data for the application to 
 1. Set your portal url for `esriConfig.portalUrl = "https://myHostName.esri.com/portal";` in `ArcGISMap.jsx`.
 2. Update the `webmapId` value in `ArcGISMap.jsx` to point to a webmap with your own data.
 3. Set your own geodatabase version name for `setCurrentGDBVersion("owner.version_name")` to point to the version you wish to interact with in `ArcGISMap.jsx`. 
-    - <i>Note: This is only necessary because the [`UtilityNetworkTrace](https://developers.arcgis.com/javascript/latest/components/storybook/?path=/docs/map-components_component-reference-utility-network-trace--docs) component still does not automatically react to a version change for the `UtilityNetwork.gdbVersion`.</i>
+    - <i>Note: This is only necessary because the [UtilityNetworkTrace](https://developers.arcgis.com/javascript/latest/components/storybook/?path=/docs/map-components_component-reference-utility-network-trace--docs) component still does not automatically react to a version change for the `UtilityNetwork.gdbVersion`.</i>
     - This will not be necessary ideally after version `4.30`.
 
 ### Additional Information about this application
