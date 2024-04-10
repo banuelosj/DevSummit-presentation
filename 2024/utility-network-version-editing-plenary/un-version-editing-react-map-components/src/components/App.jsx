@@ -12,9 +12,6 @@ import {
 
 const App = () => {
   const panelDescription = "City of Naperville Water District";
-  // public editing dataset
-  // const webmapId = "67d9c6bdcd894435be4f926e362ae24a";
-  const webmapId = "c267debf3db54ffb926d9af707ba9b0b";
 
   const [showTrace, setShowTrace] = useState(false);
   const [showValidateTopology, setShowValidateTopology] = useState(false);
@@ -59,7 +56,6 @@ const App = () => {
             <CalciteTooltip placement="bottom" referenceElement="version-management-action">Manage Versions</CalciteTooltip>
           </div>
           <ArcGISMap 
-            itemId={webmapId} 
             showValidateTopology={showValidateTopology} 
             showTrace={showTrace} 
           />

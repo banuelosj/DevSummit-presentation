@@ -1,13 +1,15 @@
-import { Fragment, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { 
   ArcgisMap, 
   ArcgisUtilityNetworkValidateTopology, 
   ArcgisUtilityNetworkTrace, 
   ArcgisVersionManagement,
-  ArcgisScaleBar
 } from "@arcgis/map-components-react";
+import esriConfig from "@arcgis/core/config";
 
-const ArcGISMap = ({ itemId, showValidateTopology, showTrace }) => {
+const ArcGISMap = ({ showValidateTopology, showTrace }) => {
+  esriConfig.portalUrl = "https://myHostName.esri.com/portal"; // replace with valid portal url
+  const webmapId = "30674c721c3e407ba68ec2993d016d09"; // replace with webmap id
 
   const [utilityNetwork, setUtilityNetwork] = useState(null);
   const [currentGDBVersion, setCurrentGDBVersion] = useState("");
@@ -15,7 +17,7 @@ const ArcGISMap = ({ itemId, showValidateTopology, showTrace }) => {
   useEffect(() => {
     // Need to hard-code GDB version since UtilityNetworkTrace component 
     // does not yet recognize UtilityNetwork.gdbVersion switch.
-    setCurrentGDBVersion("jbanuelos.Design_2111:Buttonwood_Service_Drop")
+    setCurrentGDBVersion("owner.version_name") // replace with valid geodatabase version for this data
   }, [])
 
   async function loadUtilityNetwork(view) {
@@ -70,7 +72,7 @@ const ArcGISMap = ({ itemId, showValidateTopology, showTrace }) => {
 
   return(
     <ArcgisMap
-      itemId={itemId}
+      itemId={webmapId}
       onArcgisViewReadyChange={async ({ target }) => {
         const view = target.view;
         view.ui.move(["zoom"], "bottom-right");
