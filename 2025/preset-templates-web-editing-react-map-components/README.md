@@ -1,6 +1,6 @@
 # Web Editing with Map Components and React using Vite template
 
-📁 **[Click here to download this project as a ZIP file](https://github.com/banuelosj/DevSummit-presentation/blob/main/2024/utility-network-version-editing-plenary/un-version-editing-react-map-components/un-version-editing-react-map-components.zip)** 📁
+📁 **[Click here to download this project as a ZIP file](https://github.com/banuelosj/DevSummit-presentation/blob/main/2025/preset-templates-web-editing-react-map-components/preset-templates-web-editing-react-map-components.zip)** 📁
 
 This repository showcases how to use map components with [React](https://react.dev/).
 
