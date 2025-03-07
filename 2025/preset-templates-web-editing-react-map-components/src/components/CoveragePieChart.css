@@ -1,0 +1,14 @@
+.chart-grid {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.chart-container {
+  width: calc(50% - 20px);
+  margin: 10px;
+}
+
+.half-screen-chart {
+  width: 100%;
+  height: 50vh;
+}

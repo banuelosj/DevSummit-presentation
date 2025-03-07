@@ -1,0 +1,40 @@
+{
+  "name": "map-components-react-sample",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@arcgis/charts-components": "^4.32.7",
+    "@arcgis/charts-model": "^4.32.7",
+    "@arcgis/coding-components": "^4.32.11",
+    "@arcgis/core": "^4.32.7",
+    "@arcgis/map-components": "^4.32.11",
+    "@esri/calcite-components": "^3.0.3",
+    "@esri/calcite-components-react": "^3.0.3",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.4",
+    "typescript": "~5.7.x",
+    "vite": "^6.1.1"
+  },
+  "browserslist": {
+    "production": [
+      "last 4 chrome versions",
+      "last 4 edge versions",
+      "last 2 firefox versions",
+      "last 2 safari versions"
+    ],
+    "development": [
+      "last 4 chrome versions",
+      "last 4 edge versions",
+      "last 2 firefox versions",
+      "last 2 safari versions"
+    ]
+  }
+}
