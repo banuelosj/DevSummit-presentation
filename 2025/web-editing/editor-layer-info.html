@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+  <title>Editor: LayerInfos</title>
+
+
+  <!-- Load Calcite components from CDN -->
+  <script type="module" src="https://js.arcgis.com/calcite-components/3.0.3/calcite.esm.js"></script>
+
+  <!-- Load the ArcGIS Maps SDK for JavaScript -->
+  <link rel="stylesheet" href="https://js.arcgis.com/4.32/esri/themes/light/main.css" />
+  <script src="https://js.arcgis.com/4.32/"></script>
+
+  <!-- Load Map components from CDN-->
+  <script type="module" src="https://js.arcgis.com/map-components/4.32/arcgis-map-components.esm.js"></script>
+
+  <style>
+    html,
+    body {
+      padding: 0;
+      margin: 0;
+      height: 100%;
+      width: 100%;
+    }
+  </style>
+</head>
+
+<body>
+  <arcgis-map id="my-map" item-id="0974d9c949d9478597a8e90312dd0f7e">
+    <arcgis-zoom position="top-left"></arcgis-zoom>
+    <arcgis-editor position="top-right"></arcgis-editor>
+  </arcgis-map>
+
+  <script>
+    const arcgisMap = document.querySelector("arcgis-map");
+    const editor = document.querySelector("arcgis-editor");
+
+    arcgisMap.addEventListener("arcgisViewReadyChange", async ({ target }) => {
+      let view = target.view;
+      await view.map.loadAll();
+      configureLayerInfos(view.map.editableLayers);
+    });
+
+    function configureLayerInfos(layers) {
+      const layerInfos = layers.map((layer) => {
+        if (layer.title === "states" || layer.title === "counties") {
+          return {
+            layer,
+            addEnabled: false,
+            deleteEnabled: false,
+            geometryUpdatesEnabled: false
+          }
+        } else {
+          return {
+            layer,
+            enabled: true
+          }
+        }
+      });
+
+      editor.layerInfos = layerInfos;
+    }
+  </script>
+</body>
+
+</html>
