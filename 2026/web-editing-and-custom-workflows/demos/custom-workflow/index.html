@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>2026 Esri Dev & Tech Summit - Batch Editing Application</title>
+
+    <!-- Load the ArcGIS Maps SDK for JavaScript from CDN -->
+    <script type="module" src="https://js.arcgis.com/5.0/"></script>
+
+    <!-- Import Application logic and styles -->
+    <script src="./editing.js" type="module"></script>
+    <link rel="stylesheet" href="./editing.css" />
+  </head>
+  <body>
+    <calcite-shell class="calcite-mode-light">
+      <calcite-navigation slot="header" id="nav">
+        <calcite-navigation-logo href="" icon="layers-editable" alt="Application logo" slot="logo"
+          heading="Custom Editing Workflows" description="Esri Developer Summit 2026"></calcite-navigation-logo>
+      </calcite-navigation>
+      <calcite-panel>
+        <div class="grid-container">
+          <calcite-panel id="panel-map" class="panel-main" heading="Streetlamp Explorer" resizable>
+            <calcite-action id="display-table" text="Toggle table panel" icon="table" slot="header-actions-start"></calcite-action>
+            <calcite-action-group layout="horizontal" slot="header-actions-end">
+              <calcite-action id="zoom-to-selection" text="Zoom to features" icon="layer-zoom-to"></calcite-action>
+            </calcite-action-group>
+            <calcite-tooltip placement="bottom" reference-element="display-table">Switch to table view</calcite-tooltip>
+            <calcite-tooltip placement="bottom" reference-element="zoom-to-selection">Zoom to current selection</calcite-tooltip>
+            <arcgis-map basemap="dark-gray" center="-71.091, 42.331" id="arcgis-map" zoom="12">
+              <arcgis-search slot="top-right"></arcgis-search>
+            </arcgis-map>
+          </calcite-panel>
+          <calcite-panel id="panel-table" class="panel-main" heading="Streetlamp Inspection Log" resizable hidden>
+            <div class="selection-container" slot="content-top">
+              <calcite-combobox id="selection-combobox" selection-mode="single-persist" placeholder="Select a field"></calcite-combobox>
+              <calcite-input id="selection-input"></calcite-input>
+              <calcite-button id="selection-button">Select</calcite-button>
+            </div>
+            <calcite-action id="display-map" text="Toggle map panel" icon="map" slot="header-actions-start"></calcite-action>
+            <calcite-tooltip placement="bottom" reference-element="display-map">Switch to map view</calcite-tooltip>
+            <div class="table-container">
+              <arcgis-feature-table
+                auto-save-disabled
+                editing-enabled
+                reference-element="arcgis-map"
+                return-geometry-enabled
+                sync-view-selection
+              ></arcgis-feature-table>
+            </div>
+          </calcite-panel>
+          <calcite-panel class="panel-info">
+            <arcgis-editor reference-element="arcgis-map" sync-view-selection></arcgis-editor>
+          </calcite-panel>
+        </div>
+      </calcite-panel>
+    </calcite-shell>
+  </body>
+</html>
